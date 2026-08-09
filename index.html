@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+  />
+
+  <title>برای محدثه ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Noto+Nastaliq+Urdu&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #080912;
+      --bg-soft: #111426;
+      --card: rgba(255, 255, 255, 0.075);
+      --card-strong: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.6);
+      --line: rgba(255, 255, 255, 0.12);
+      --primary: #ff3d70;
+      --primary-dark: #d81e55;
+      --secondary: #9b7bff;
+      --shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+      --blur: blur(24px);
+    }
+
+    body.light {
+      --bg: #f7f5fb;
+      --bg-soft: #ffffff;
+      --card: rgba(255, 255, 255, 0.7);
+      --card-strong: rgba(255, 255, 255, 0.92);
+      --text: #201a2d;
+      --muted: rgba(32, 26, 45, 0.58);
+      --line: rgba(32, 26, 45, 0.11);
+      --primary: #e52f68;
+      --primary-dark: #bd1c4e;
+      --secondary: #7755ed;
+      --shadow: 0 25px 70px rgba(65, 39, 95, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    body {
+      position: relative;
+      color: var(--text);
+      font-family: "Vazirmatn", sans-serif;
+      background:
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(255, 61, 112, 0.18),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(155, 123, 255, 0.16),
+          transparent 28%
+        ),
+        var(--bg);
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* پس‌زمینه متحرک */
+
+    .ambient {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .blob {
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      filter: blur(65px);
+      opacity: 0.2;
+      animation: floatBlob 14s ease-in-out infinite alternate;
+    }
+
+    .blob.one {
+      top: 10%;
+      right: -70px;
+      background: var(--primary);
+    }
+
+    .blob.two {
+      bottom: 15%;
+      left: -80px;
+      background: var(--secondary);
+      animation-delay: -4s;
+    }
+
+    @keyframes floatBlob {
+      from {
+        transform: translate(0, 0) scale(1);
+      }
+
+      to {
+        transform: translate(45px, -35px) scale(1.2);
+      }
+    }
+
+    /* ساختار اصلی */
+
+    .app {
+      width: min(100%, 620px);
+      height: 100dvh;
+      margin: auto;
+      padding:
+        max(14px, env(safe-area-inset-top))
+        14px
+        max(12px, env(safe-area-inset-bottom));
+
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 46px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 10px 25px rgba(255, 61, 112, 0.25);
+      font-size: 20px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .brand p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .theme-btn,
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      color: var(--text);
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      transition: 0.25s ease;
+    }
+
+    .theme-btn:active,
+    .icon-btn:active {
+      transform: scale(0.9);
+    }
+
+    .views {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .view {
+      position: absolute;
+      inset: 0;
+      display: none;
+      min-height: 0;
+      animation: showView 0.4s ease both;
+    }
+
+    .view.active {
+      display: flex;
+    }
+
+    @keyframes showView {
+      from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .card {
+      width: 100%;
+      min-height: 0;
+      padding: 20px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+    }
+
+    /* صفحه اصلی */
+
+    .home-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .home-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .date-pill {
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      color: var(--muted);
+      font-size: 10px;
+      background: var(--card);
+    }
+
+    .heart-pulse {
+      font-size: 30px;
+      animation: heartbeat 1.6s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      15% {
+        transform: scale(1.18);
+      }
+
+      30% {
+        transform: scale(1);
+      }
+    }
+
+    .hero {
+      text-align: center;
+      margin: auto 0;
+    }
+
+    .hero small {
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .hero h2 {
+      margin: 18px 0 12px;
+      font-size: clamp(28px, 8vw, 46px);
+      line-height: 1.45;
+      font-weight: 900;
+    }
+
+    .hero h2 span {
+      display: block;
+      color: var(--primary);
+      text-shadow: 0 0 25px rgba(255, 61, 112, 0.3);
+    }
+
+    .hero p {
+      max-width: 390px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .home-footer {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .home-footer b {
+      color: var(--primary);
+    }
+
+    /* عنوان بخش‌ها */
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .section-head span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* آهنگ‌ها */
+
+    .music-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 9px;
+      overflow-y: auto;
+      min-height: 0;
+      padding: 3px 2px 10px;
+      scrollbar-width: thin;
+    }
+
+    .track {
+      position: relative;
+      min-width: 0;
+      aspect-ratio: 1;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      color: var(--text);
+      background: var(--card);
+      transition: 0.25s ease;
+    }
+
+    .track:hover {
+      transform: translateY(-3px);
+    }
+
+    .track.active {
+      color: #ffffff;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      box-shadow: 0 12px 25px rgba(255, 61, 112, 0.25);
+    }
+
+    .track-number {
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .track-label {
+      display: block;
+      margin-top: 4px;
+      font-size: 9px;
+      opacity: 0.7;
+    }
+
+    .playing-bars {
+      position: absolute;
+      left: 9px;
+      bottom: 9px;
+      display: none;
+      gap: 2px;
+      align-items: end;
+      height: 12px;
+    }
+
+    .track.active .playing-bars {
+      display: flex;
+    }
+
+    .playing-bars i {
+      width: 3px;
+      height: 6px;
+      border-radius: 5px;
+      background: #ffffff;
+      animation: bars 0.65s ease-in-out infinite alternate;
+    }
+
+    .playing-bars i:nth-child(2) {
+      height: 12px;
+      animation-delay: 0.2s;
+    }
+
+    .playing-bars i:nth-child(3) {
+      height: 8px;
+      animation-delay: 0.4s;
+    }
+
+    @keyframes bars {
+      to {
+        height: 4px;
+      }
+    }
+
+    /* گالری */
+
+    .gallery-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    /*
+      قاب عکس:
+      تصویر داخل این قاب کاملاً و بدون برش نمایش داده می‌شود.
+    */
+
+    .photo-stage {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      border-radius: 24px;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 61, 112, 0.12),
+          transparent 65%
+        ),
+        #050509;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /*
+      مهم‌ترین اصلاح:
+      contain باعث می‌شود تمام تصویر دیده شود
+      و هیچ قسمتی از بالا، پایین، چپ یا راست بریده نشود.
+    */
+
+    .photo-stage img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center center;
+      opacity: 1;
+      transform: none;
+      transition:
+        opacity 0.35s ease,
+        filter 0.35s ease;
+    }
+
+    /*
+      در حالت اسلایدشو فقط افکت نور و شفافیت داریم.
+      دیگر تصویر زوم نمی‌شود تا هیچ بخشی از آن بیرون قاب نرود.
+    */
+
+    .photo-stage.slideshow img {
+      animation: cinematicPhoto 4.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes cinematicPhoto {
+      from {
+        opacity: 0.9;
+        filter: brightness(0.95) saturate(1);
+      }
+
+      to {
+        opacity: 1;
+        filter: brightness(1.08) saturate(1.08);
+      }
+    }
+
+    .photo-stage::after {
+      content: "";
+      position: absolute;
+      inset: 55% 0 0;
+      z-index: 1;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.18) 35%,
+        rgba(0, 0, 0, 0.82) 100%
+      );
+      pointer-events: none;
+    }
+
+    .photo-caption {
+      position: absolute;
+      right: 18px;
+      left: 18px;
+      bottom: 16px;
+      z-index: 2;
+      color: #ffffff;
+      text-align: center;
+      font-family: "Noto Nastaliq Urdu", serif;
+      font-size: 15px;
+    }
+
+    .photo-counter {
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      z-index: 2;
+      padding: 5px 10px;
+      border-radius: 30px;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.35);
+      font-size: 10px;
+      backdrop-filter: blur(10px);
+    }
+
+    .thumbs {
+      display: flex;
+      gap: 7px;
+      height: 54px;
+      margin-top: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .thumbs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .thumb {
+      flex: 0 0 54px;
+      padding: 0;
+      overflow: hidden;
+      border: 2px solid transparent;
+      border-radius: 14px;
+      opacity: 0.55;
+      background: transparent;
+      transition: 0.25s ease;
+    }
+
+    .thumb.active {
+      border-color: var(--primary);
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .slideshow-btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      color: var(--text);
+      background: var(--card-strong);
+      font-weight: 700;
+    }
+
+    .slideshow-btn.active {
+      color: #ffffff;
+      border-color: transparent;
+      background: var(--primary);
+    }
+
+    /* نامه */
+
+    .letter-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      text-align: center;
+    }
+
+    .letter-icon {
+      margin: 18px 0 5px;
+      font-size: 36px;
+    }
+
+    .letter-title {
+      margin: 0;
+      font-size: 21px;
+    }
+
+    .letter-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+      padding: 20px 5px;
+      color: var(--text);
+      font-family: "Noto Nastaliq Urdu", serif;
+      font-size: 17px;
+      line-height: 2.5;
+      white-space: pre-wrap;
+    }
+
+    /* پلیر */
+
+    .player {
+      flex-shrink: 0;
+      padding: 13px 15px 12px;
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      background: var(--card-strong);
+      box-shadow: var(--shadow);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+    }
+
+    .player-top {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .cover {
+      position: relative;
+      width: 45px;
+      height: 45px;
+      flex: 0 0 45px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      font-size: 21px;
+    }
+
+    .cover.playing {
+      animation: coverRotate 7s linear infinite;
+    }
+
+    @keyframes coverRotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .song-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .song-info strong {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 12px;
+    }
+
+    .song-info span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .volume-box {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .volume-icon {
+      font-size: 13px;
+    }
+
+    .volume-range {
+      width: 62px !important;
+    }
+
+    .range-wrap {
+      margin-top: 10px;
+    }
+
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      direction: ltr;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 5px;
+      margin: 0;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      border-radius: 10px;
+      outline: none;
+      background: var(--line);
+      accent-color: var(--primary);
+      touch-action: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      width: 17px;
+      height: 17px;
+      appearance: none;
+      -webkit-appearance: none;
+      border: 3px solid var(--primary);
+      border-radius: 50%;
+      background: var(--card-strong);
+      box-shadow: 0 0 0 4px rgba(255, 61, 112, 0.15);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 13px;
+      height: 13px;
+      border: 3px solid var(--primary);
+      border-radius: 50%;
+      background: var(--card-strong);
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 27px;
+      margin-top: 8px;
+      direction: ltr;
+    }
+
+    .control-btn {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      color: var(--text);
+      background: transparent;
+      font-size: 19px;
+    }
+
+    .control-btn:active {
+      transform: scale(0.85);
+    }
+
+    .play-btn {
+      width: 49px;
+      height: 49px;
+      border-radius: 50%;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      box-shadow: 0 8px 22px rgba(255, 61, 112, 0.35);
+      font-size: 18px;
+    }
+
+    /* منوی پایین */
+
+    .navigation {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      flex-shrink: 0;
+    }
+
+    .nav-btn {
+      min-height: 43px;
+      padding: 7px 3px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      color: var(--muted);
+      background: var(--card);
+      font-size: 10px;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .nav-btn.active {
+      color: #ffffff;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      box-shadow: 0 8px 18px rgba(255, 61, 112, 0.2);
+    }
+
+    @media (max-height: 680px) {
+      .app {
+        gap: 8px;
+      }
+
+      .card {
+        padding: 15px;
+        border-radius: 24px;
+      }
+
+      .player {
+        padding: 9px 12px;
+      }
+
+      .controls {
+        margin-top: 4px;
+      }
+
+      .play-btn {
+        width: 42px;
+        height: 42px;
+      }
+
+      .navigation {
+        min-height: 39px;
+      }
+
+      .nav-btn {
+        min-height: 39px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="ambient">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+  </div>
+
+  <div class="app">
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">❤️</div>
+
+        <div>
+          <h1>برای محدثه</h1>
+          <p>گوشه‌ای کوچک از قلب من</p>
+        </div>
+      </div>
+
+      <button
+        class="theme-btn"
+        id="themeBtn"
+        aria-label="تغییر تم"
+      >
+        ☀️
+      </button>
+    </header>
+
+    <main class="views">
+
+      <!-- صفحه اصلی -->
+      <section class="view active" id="homeView">
+        <div class="card home-card">
+
+          <div class="home-top">
+            <div class="date-pill">فقط برای تو</div>
+            <div class="heart-pulse">💗</div>
+          </div>
+
+          <div class="hero">
+            <small>محدثه‌ی من</small>
+
+            <h2>
+              تو همان آرامشی
+              <span>که دلم همیشه می‌خواست</span>
+            </h2>
+
+            <p>
+              میان تمام اتفاق‌های زندگی، بودنت قشنگ‌ترین اتفاقی بود
+              که می‌توانست برای من بیفتد.
+            </p>
+          </div>
+
+          <div class="home-footer">
+            ساخته شده با <b>عشق</b> برای کسی که دوستش دارم
+          </div>
+
+        </div>
+      </section>
+
+      <!-- آهنگ‌ها -->
+      <section class="view" id="musicView">
+        <div class="card music-card">
+
+          <div class="section-head">
+            <h2>آهنگ‌های ما 🎵</h2>
+            <span>یک آهنگ را انتخاب کن</span>
+          </div>
+
+          <div class="music-grid" id="musicGrid"></div>
+
+        </div>
+      </section>
+
+      <!-- گالری -->
+      <section class="view" id="galleryView">
+        <div class="card gallery-card">
+
+          <div class="section-head">
+            <h2>خاطرات ما 📸</h2>
+            <span id="photoCounter">۱ / ۲۰</span>
+          </div>
+
+          <div class="photo-stage" id="photoStage">
+            <img
+              id="mainPhoto"
+              src="1.jpg"
+              alt="خاطره عاشقانه"
+            />
+
+            <div class="photo-counter" id="photoNumber">
+              ۱ / ۲۰
+            </div>
+
+            <div class="photo-caption" id="photoCaption">
+              تو زیباترین اتفاق دنیای منی
+            </div>
+          </div>
+
+          <div class="thumbs" id="thumbs"></div>
+
+          <button
+            class="slideshow-btn"
+            id="slideshowBtn"
+          >
+            ▶ اجرای خودکار خاطرات
+          </button>
+
+        </div>
+      </section>
+
+      <!-- نامه -->
+      <section class="view" id="letterView">
+        <div class="card letter-card">
+
+          <div class="letter-icon">💌</div>
+
+          <h2 class="letter-title">
+            یک نامه برای تو
+          </h2>
+
+          <div
+            class="letter-content"
+            id="letterContent"
+          ></div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- پلیر موسیقی -->
+    <section class="player">
+
+      <div class="player-top">
+
+        <div class="cover" id="cover">
+          🎵
+        </div>
+
+        <div class="song-info">
+          <strong id="songTitle">
+            هنوز آهنگی انتخاب نشده
+          </strong>
+
+          <span id="songStatus">
+            یک آهنگ را از بخش آهنگ‌ها انتخاب کن
+          </span>
+        </div>
+
+        <div class="volume-box">
+          <span class="volume-icon">🔊</span>
+
+          <input
+            class="volume-range"
+            id="volumeRange"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"
+            aria-label="میزان صدا"
+          />
+        </div>
+
+      </div>
+
+      <div class="range-wrap">
+
+        <input
+          id="progressRange"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+          step="0.1"
+          aria-label="موقعیت آهنگ"
+        />
+
+        <div class="time-row">
+          <span id="currentTime">00:00</span>
+          <span id="duration">00:00</span>
+        </div>
+
+      </div>
+
+      <div class="controls">
+        <button
+          class="control-btn"
+          id="nextBtn"
+          aria-label="آهنگ بعدی"
+        >
+          ⏭
+        </button>
+
+        <button
+          class="control-btn play-btn"
+          id="playBtn"
+          aria-label="پخش"
+        >
+          ▶
+        </button>
+
+        <button
+          class="control-btn"
+          id="prevBtn"
+          aria-label="آهنگ قبلی"
+        >
+          ⏮
+        </button>
+      </div>
+
+    </section>
+
+    <!-- منوی پایین -->
+    <nav class="navigation">
+
+      <button
+        class="nav-btn active"
+        data-view="homeView"
+      >
+        خانه
+      </button>
+
+      <button
+        class="nav-btn"
+        data-view="musicView"
+      >
+        آهنگ‌ها
+      </button>
+
+      <button
+        class="nav-btn"
+        data-view="galleryView"
+      >
+        گالری
+      </button>
+
+      <button
+        class="nav-btn"
+        data-view="letterView"
+      >
+        نامه
+      </button>
+
+    </nav>
+
+  </div>
+
+  <audio id="audio" preload="metadata"></audio>
+
+  <script>
+    const $ = id => document.getElementById(id);
+
+    const audio = $("audio");
+    const progressRange = $("progressRange");
+    const volumeRange = $("volumeRange");
+
+    const captions = [
+      "تو زیباترین اتفاق دنیای منی",
+      "هر لحظه با تو بودن، یک معجزه است",
+      "چشم‌های تو تمام دنیای من است",
+      "صدای قلبت، قشنگ‌ترین آهنگ دنیاست",
+      "کنار تو زمان معنای خودش را از دست می‌دهد",
+      "تو آرامش تمام لحظه‌های منی",
+      "بخند؛ خنده‌هایت دنیای من را می‌سازد",
+      "در قلب من همیشه جای مخصوص خودت را داری",
+      "تو همان حس نابی هستی که همیشه می‌خواستم",
+      "عشق برای من یعنی لبخند تو",
+      "با تو هر روز یک شروع تازه است",
+      "تمام قلبم برای تو می‌تپد",
+      "تو خورشید شب‌های تاریک منی",
+      "دلیل خیلی از لبخندهای من تویی",
+      "بی‌صدا، عمیق و برای همیشه دوستت دارم",
+      "ماه در برابر زیبایی تو کم می‌آورد",
+      "تو قشنگ‌ترین فصل زندگی منی",
+      "قلب من فقط با بودن تو آرام می‌گیرد",
+      "ممنونم که در زندگی من هستی",
+      "تا همیشه، با هم و برای هم"
+    ];
+
+    const letterText = `محدثه‌ی عزیزم...
+
+گاهی کلمات برای بیان حجم احساسی که به تو دارم، خیلی کوچک‌اند.
+
+تو فقط یک نفر در زندگی من نیستی؛
+تو آرامش روزهای شلوغ،
+لبخند لحظه‌های سخت
+و زیباترین دلیل ادامه دادن منی.
+
+این صفحه شاید ساده باشد،
+اما تمام چیزی که در آن گذاشته‌ام
+از قلبم آمده است.
+
+دوستت دارم؛
+امروز، فردا و تمام روزهایی که هنوز نیامده‌اند. ❤️`;
+
+    const state = {
+      track: 0,
+      photo: 1,
+      slideshow: false,
+      slideshowTimer: null,
+      seeking: false,
+      letterStarted: false
+    };
+
+    function persianNumbers(value) {
+      return String(value).replace(
+        /\d/g,
+        digit => "۰۱۲۳۴۵۶۷۸۹"[digit]
+      );
+    }
+
+    function formatTime(seconds) {
+      if (!Number.isFinite(seconds)) {
+        return "00:00";
+      }
+
+      const minutes = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+
+      return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
+
+    /* تغییر صفحات */
+
+    document.querySelectorAll(".nav-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        const viewId = button.dataset.view;
+
+        document.querySelectorAll(".view").forEach(view => {
+          view.classList.toggle(
+            "active",
+            view.id === viewId
+          );
+        });
+
+        document.querySelectorAll(".nav-btn").forEach(navButton => {
+          navButton.classList.toggle(
+            "active",
+            navButton === button
+          );
+        });
+
+        if (viewId === "letterView") {
+          startLetter();
+        }
+      });
+    });
+
+    /* تغییر تم */
+
+    $("themeBtn").addEventListener("click", () => {
+      document.body.classList.toggle("light");
+
+      const isLight =
+        document.body.classList.contains("light");
+
+      $("themeBtn").textContent =
+        isLight ? "🌙" : "☀️";
+    });
+
+    /* ساخت آهنگ‌ها */
+
+    function buildMusic() {
+      const grid = $("musicGrid");
+
+      for (let i = 1; i <= 20; i++) {
+        const button = document.createElement("button");
+
+        button.className = "track";
+        button.dataset.track = i;
+
+        button.innerHTML = `
+          <span class="track-number">
+            ${persianNumbers(i)}
+          </span>
+
+          <span class="track-label">
+            آهنگ شماره ${persianNumbers(i)}
+          </span>
+
+          <span class="playing-bars">
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+        `;
+
+        button.addEventListener("click", () => {
+          playTrack(i);
+        });
+
+        grid.appendChild(button);
+      }
+    }
+
+    function updateTrackButtons() {
+      document.querySelectorAll(".track").forEach(button => {
+        button.classList.toggle(
+          "active",
+          Number(button.dataset.track) === state.track
+        );
+      });
+    }
+
+    function playTrack(number) {
+      state.track = number;
+
+      audio.src = `${number}.mp3`;
+      audio.load();
+
+      $("songTitle").textContent =
+        `آهنگ شماره ${persianNumbers(number)}`;
+
+      $("songStatus").textContent =
+        "در حال آماده‌سازی آهنگ...";
+
+      updateTrackButtons();
+
+      audio
+        .play()
+        .then(() => {
+          setPlayingState(true);
+          $("songStatus").textContent =
+            "در حال پخش برای تو...";
+        })
+        .catch(() => {
+          setPlayingState(false);
+
+          $("songStatus").textContent =
+            "فایل آهنگ در کنار index.html پیدا نشد";
+        });
+    }
+
+    function setPlayingState(isPlaying) {
+      $("playBtn").textContent =
+        isPlaying ? "⏸" : "▶";
+
+      $("cover").classList.toggle(
+        "playing",
+        isPlaying
+      );
+    }
+
+    $("playBtn").addEventListener("click", () => {
+      if (!audio.src) {
+        playTrack(1);
+        return;
+      }
+
+      if (audio.paused) {
+        audio
+          .play()
+          .then(() => {
+            setPlayingState(true);
+            $("songStatus").textContent =
+              "در حال پخش برای تو...";
+          })
+          .catch(() => {});
+      } else {
+        audio.pause();
+        setPlayingState(false);
+
+        $("songStatus").textContent =
+          "پخش متوقف شد";
+      }
+    });
+
+    $("nextBtn").addEventListener("click", () => {
+      const next =
+        state.track >= 20
+          ? 1
+          : state.track + 1;
+
+      playTrack(next);
+    });
+
+    $("prevBtn").addEventListener("click", () => {
+      const previous =
+        state.track <= 1
+          ? 20
+          : state.track - 1;
+
+      playTrack(previous);
+    });
+
+    audio.addEventListener("loadedmetadata", () => {
+      progressRange.value = 0;
+
+      $("duration").textContent =
+        formatTime(audio.duration);
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      if (!state.seeking && audio.duration) {
+        progressRange.value =
+          (audio.currentTime / audio.duration) * 100;
+      }
+
+      $("currentTime").textContent =
+        formatTime(audio.currentTime);
+    });
+
+    audio.addEventListener("play", () => {
+      setPlayingState(true);
+    });
+
+    audio.addEventListener("pause", () => {
+      setPlayingState(false);
+    });
+
+    audio.addEventListener("ended", () => {
+      const next =
+        state.track >= 20
+          ? 1
+          : state.track + 1;
+
+      playTrack(next);
+    });
+
+    /* کنترل نوار زمان آهنگ */
+
+    progressRange.addEventListener("pointerdown", () => {
+      state.seeking = true;
+    });
+
+    progressRange.addEventListener("pointerup", () => {
+      state.seeking = false;
+    });
+
+    progressRange.addEventListener("input", () => {
+      if (!audio.duration) {
+        return;
+      }
+
+      const newTime =
+        (Number(progressRange.value) / 100) *
+        audio.duration;
+
+      $("currentTime").textContent =
+        formatTime(newTime);
+    });
+
+    progressRange.addEventListener("change", () => {
+      if (!audio.duration) {
+        return;
+      }
+
+      audio.currentTime =
+        (Number(progressRange.value) / 100) *
+        audio.duration;
+
+      state.seeking = false;
+    });
+
+    volumeRange.addEventListener("input", () => {
+      audio.volume =
+        Number(volumeRange.value);
+    });
+
+    /* ساخت گالری */
+
+    function buildGallery() {
+      const thumbs = $("thumbs");
+
+      for (let i = 1; i <= 20; i++) {
+        const button = document.createElement("button");
+
+        button.className = "thumb";
+        button.dataset.photo = i;
+
+        const image = document.createElement("img");
+
+        image.src = `${i}.jpg`;
+        image.alt =
+          `تصویر شماره ${persianNumbers(i)}`;
+
+        button.appendChild(image);
+
+        button.addEventListener("click", () => {
+          setPhoto(i);
+        });
+
+        thumbs.appendChild(button);
+      }
+    }
+
+    function setPhoto(number) {
+      state.photo = number;
+
+      const image = $("mainPhoto");
+
+      image.style.opacity = "0";
+
+      setTimeout(() => {
+        image.src = `${number}.jpg`;
+        image.style.opacity = "1";
+      }, 130);
+
+      $("photoCaption").textContent =
+        captions[number - 1];
+
+      const counter =
+        `${persianNumbers(number)} / ۲۰`;
+
+      $("photoCounter").textContent = counter;
+      $("photoNumber").textContent = counter;
+
+      document.querySelectorAll(".thumb").forEach(button => {
+        const isActive =
+          Number(button.dataset.photo) === number;
+
+        button.classList.toggle(
+          "active",
+          isActive
+        );
+
+        if (isActive) {
+          button.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center"
+          });
+        }
+      });
+    }
+
+    $("slideshowBtn").addEventListener("click", () => {
+      state.slideshow = !state.slideshow;
+
+      $("photoStage").classList.toggle(
+        "slideshow",
+        state.slideshow
+      );
+
+      $("slideshowBtn").classList.toggle(
+        "active",
+        state.slideshow
+      );
+
+      $("slideshowBtn").textContent =
+        state.slideshow
+          ? "⏹ توقف اجرای خودکار"
+          : "▶ اجرای خودکار خاطرات";
+
+      clearInterval(state.slideshowTimer);
+
+      if (state.slideshow) {
+        state.slideshowTimer = setInterval(() => {
+          const next =
+            state.photo >= 20
+              ? 1
+              : state.photo + 1;
+
+          setPhoto(next);
+        }, 4500);
+      }
+    });
+
+    /* نامه تایپ‌شونده */
+
+    function startLetter() {
+      if (state.letterStarted) {
+        return;
+      }
+
+      state.letterStarted = true;
+
+      const box = $("letterContent");
+      let index = 0;
+
+      function typeNext() {
+        if (index < letterText.length) {
+          box.textContent += letterText[index];
+          index++;
+
+          setTimeout(typeNext, 32);
+        }
+      }
+
+      typeNext();
+    }
+
+    /* اجرای اولیه */
+
+    buildMusic();
+    buildGallery();
+    setPhoto(1);
+
+    audio.volume = 1;
+  </script>
+
+</body>
+</html>
